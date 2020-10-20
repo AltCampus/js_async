@@ -3,7 +3,6 @@ let xhr = new XMLHttpRequest();
 // xhr.addEventListener('load', () => console.log(xhr.response));
 let root = document.querySelector('.root');
 let random = document.querySelector('#random')
-
 function dataFetch(){
     xhr.open('GET', url)
     xhr.onload = function(){
@@ -21,8 +20,6 @@ function dataFetch(){
     }
     xhr.send();
 } 
-
-
 console.log(xhr)
 dataFetch();
 random.addEventListener('click', dataFetch);
