@@ -17,7 +17,7 @@ function dataFetch(){
         root.appendChild(div)
     }
     xhr.onabort = function() {
-
+   alert('Error')
     }
     xhr.send();
 } 
