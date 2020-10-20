@@ -10,7 +10,11 @@ setTimeout(sayHello, 1000);
 console.log("Hey You!");
 ```
 
- output
+ output 
+ "Hey You" 
+ 'After 1 Second'
+ "Hey You Called Me"
+
 
 2.
 ```js
@@ -23,6 +27,8 @@ setTimeout(sayHello, 0);
 console.log("Hey You!");
 ```
  output
+"Hey You!"
+"Hey You Called Me"
 
 3.
 ```js
@@ -35,13 +41,17 @@ function main() {
 }
 main();
 ```
+
  output
+"A"
+"C"
+"B"
 
 4.
 ```js
 function runWhileLoopForNSeconds(sec) {
   let start = Date.now(),
-    now = start;
+  now = start;
   while (now - start < sec * 1000) {
     now = Date.now();
   }
