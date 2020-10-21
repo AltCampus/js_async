@@ -3,7 +3,7 @@
 // 2. Returns a promise
 // 3. Resolve the promise when data is fetched (onload)
 // 4. Reject the promise when error occured (onerror)
-
 function fetchData() {
   // your code goes here
+  return new promise()
 }

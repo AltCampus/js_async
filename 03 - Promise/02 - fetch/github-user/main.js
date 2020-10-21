@@ -2,13 +2,29 @@
 let userInput = document.querySelector('#userInput')
 let profile = document.querySelector('.profile-section');
  
-function userDataFetch(userInput = 'shadab-me'){
+function fetchUser(userInput){
+    return fetch(`https://api.github.com/users/${userInput}`).then(data => data.json());
+}
+
+function fetchFollower(userInput){
+    return fetch(`https://api.github.com/users/${userInput}/followers`).then(data => data.json());
+ }
+
+ 
+ function fetchRepos(userInput){
+    return fetch(`https://api.github.com/users/${userInput}/repos`).then(data => data.json());
+ 
+ } 
+
+function userUI(userData){
+     /*
 let url = `https://api.github.com/users/${userInput}`
 let xhr = new XMLHttpRequest();
 xhr.open('GET', url);
 xhr.onload = function(){
 let userData = JSON.parse(xhr.response);
 console.log(userData)
+*/
 profile.innerHTML = ''
 let card = document.createElement('div');
 card.setAttribute('class', 'row');
@@ -59,22 +75,61 @@ profileLink.innerText = 'GitHub Profile'
 profileLink.href = userData.html_url
 cardBody.append( cardTitle,cardSubTitle,  company, location, counter ,profileLink);
 profile.append(card);
+let body = document.querySelector('body')
+ let dataContainer = document.createElement('div');
+dataContainer.setAttribute('class', 'container data-container')
+let dataRow = document.createElement('div');
+dataRow.setAttribute('class', 'row');
+let repoCol = document.createElement('div');
+repoCol.setAttribute('class', 'col-md-8 repo mt-5');
+let followerCol = document.createElement('div');
+followerCol.setAttribute('class', 'col-md-4 follower mt-4');
+dataRow.append(repoCol, followerCol);
+dataContainer.appendChild(dataRow);
+body.append(dataContainer);
 }
+/*
 console.log(xhr)
  xhr.onabort = function(){
     alert('Error')
 };
 xhr.send();
-}
+*/
+
+function  followersUI(followers){
+    let folcon = document.querySelector('.follower');
+  folcon.innerHTML = '';
+  [...followers].slice(0, 5).map((follower) => {
+  let  followerPro = document.createElement('div');
+  followerPro.setAttribute('class', 'profile')
+  let profileImage = document.createElement('img');
+  profileImage.setAttribute('class', 'followerImg p-3 rounded');
+  profileImage.src =  follower.avatar_url;
+  let profileName = document.createElement('div');
+  profileName.innerHTML = `<h6>${follower.login}</h6>`;
+  profileName.setAttribute('class', 'p-3')
+  followerPro.append(profileImage, profileName)
+  let hr = document.createElement('hr')
+   folcon.append(followerPro, hr);
+})
+};
+function reposUI(repos){
+    [...repos].slice(0, 5).map((repo) => {
+   console.log(repo)
+    })
+ }
+
 
 userInput.addEventListener('keypress', (event) => {
-    if(event.key === "Enter"){
+     if(event.key === "Enter"){
       if(!userInput.value){
          alert('Please Enter Valid User Name')
      }else{
-        userDataFetch(userInput.value)
-
+        fetchUser(userInput.value).then(userData => userUI(userData));
+        fetchFollower(userInput.value).then((users) => followersUI(users));
+        fetchRepos(userInput.value).then((repos) => reposUI(repos));
      }
     }
   })
-userDataFetch('shadab-me')
+
+

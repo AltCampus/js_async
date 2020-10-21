@@ -66,3 +66,17 @@ h6{
 .counter-section{
     width: 50%;
 }
+
+.profile{
+    display: flex;
+}
+.followerImg{
+    width: 120px;
+    height: 120px;
+}
+hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
