@@ -8,7 +8,7 @@ function fetchData(url) {
 return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url);
-     xhr.onload  =  () => {
+    xhr.onload  =  () => {
         return resolve(JSON.parse(xhr.response));
      };
      xhr.onabort  = () => {

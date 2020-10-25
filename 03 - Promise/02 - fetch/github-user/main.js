@@ -97,8 +97,12 @@ xhr.send();
 */
 
 function  followersUI(followers){
-    let folcon = document.querySelector('.follower');
+let folcon = document.querySelector('.follower');
     folcon.innerHTML = '';
+let head = document.createElement('h2');
+head.setAttribute('class', 'h2 text-muted mb-5 mt-2')
+head.innerText = 'Followers';
+folcon.appendChild(head);
   [...followers].slice(0, 5).map((follower) => {
   let  followerPro = document.createElement('div');
   followerPro.setAttribute('class', 'profile')
@@ -110,12 +114,16 @@ function  followersUI(followers){
   profileName.setAttribute('class', 'p-3')
   followerPro.append(profileImage, profileName)
   let hr = document.createElement('hr')
-   folcon.append(followerPro, hr);
+  folcon.append(followerPro, hr);
 })
 };
 function reposUI(repos){
     let repoCon = document.querySelector('.repo');
     repoCon.innerHTML = '';
+let head = document.createElement('h2');
+head.setAttribute('class', 'h2 text-muted mb-5')
+head.innerText = 'Repositories';
+repoCon.appendChild(head);
     [...repos].slice(0, 5).map((repo) => {
         console.log(repo)
         let  repoContainer = document.createElement('div');
